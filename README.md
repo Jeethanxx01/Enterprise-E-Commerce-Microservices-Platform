@@ -17,28 +17,21 @@ A modern, scalable e-commerce platform built with microservices architecture, de
 - 🔐 **Secure Authentication & Authorization**
   - JWT-based authentication
   - Role-based access control
-  - OAuth2 integration ready
   - Enhanced logging for authentication events
 
 - 🛍️ **Product Management**
   - Real-time inventory tracking via Kafka
   - Advanced search and filtering
   - Category management
-  - Product recommendations
   - Asynchronous updates for inventory changes
 
 - 🛒 **Shopping Experience**
   - Persistent shopping cart
-  - Real-time price updates through Kafka
-  - Wishlist functionality
-  - Order tracking
   - Containerized frontend for consistent deployment
 
 - 💳 **Order Processing**
   - Multi-step checkout
-  - Payment gateway integration
   - Order history and tracking
-  - Email notifications
   - Asynchronous order status updates
 
 ## 🏗️ Architecture
@@ -61,12 +54,9 @@ A modern, scalable e-commerce platform built with microservices architecture, de
    - Shopping cart management
    - Price calculations
    - Cart persistence
-   - Real-time price synchronization
 
 4. **Order Service** (`order-service/`)
    - Order processing
-   - Payment integration
-   - Order tracking
    - Kafka-based order status updates
 
 ### Technology Stack
@@ -113,7 +103,10 @@ A modern, scalable e-commerce platform built with microservices architecture, de
    ```bash
    git clone https://github.com/your-username/ecommerce-microservices-platform.git
    cd ecommerce-microservices-platform
+   cd Microservices
+   docker-compose up -d
    ```
+   run all microservices in IDE
 
 2. **Start Infrastructure Services**
    ```bash
@@ -121,17 +114,10 @@ A modern, scalable e-commerce platform built with microservices architecture, de
    docker-compose up -d
    ```
 
-3. **Build and Run Microservices**
-   ```bash
-   cd Microservices
-   ./mvnw clean install
-   docker-compose up -d
-   ```
-
 4. **Start Frontend**
    ```bash
    cd Frontend
-   docker-compose up -d
+   npm start
    ```
 
 ## 📊 Monitoring and Logging
@@ -152,19 +138,8 @@ A modern, scalable e-commerce platform built with microservices architecture, de
 
 ## 🔧 Development
 
-### Code Style
-- Follows Google Java Style Guide
-- ESLint and Prettier for frontend code
-- Consistent code formatting across services
-- Structured logging patterns
 
-### Testing
-- Unit tests with JUnit 5
-- Integration tests with TestContainers
-- Frontend tests with Jest and React Testing Library
-- Kafka integration tests
-
-## 📈 Performance Optimizations
+## 📈 Performance Optimizations recommendations
 
 - Redis caching for frequently accessed data
 - Asynchronous processing with Kafka
@@ -180,12 +155,7 @@ A modern, scalable e-commerce platform built with microservices architecture, de
 - Role-based access control
 - HTTPS enforcement
 - Input validation and sanitization
-- Rate limiting
 - CORS configuration
-- SQL injection prevention
-- XSS protection
-- Enhanced security logging
-
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -200,16 +170,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - [Your GitHub](https://github.com/yourusername)
+- **Jeethan Joel Crasta**- [Your GitHub](https://github.com/Jeethanxx01)
 
-## 🙏 Acknowledgments
-
-- Spring Boot team for the amazing framework
-- React team for the frontend library
-- Elastic team for the ELK stack
-- Apache Kafka team for the messaging system
-- All contributors who have helped shape this project
-
----
 
 ⭐ Star this repository if you find it helpful!
