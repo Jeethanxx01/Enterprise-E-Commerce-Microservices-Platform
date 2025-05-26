@@ -1,0 +1,2 @@
+2025-05-20 12:55:50 ERROR c.B.u.UserServiceApplication - This is an error message - something went wrong
+2025-05-20 12:55:50 ERROR c.B.u.UserServiceApplication - Failed to process request for user: 123

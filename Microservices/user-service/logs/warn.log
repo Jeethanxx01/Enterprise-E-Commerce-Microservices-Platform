@@ -1,0 +1,4 @@
+2025-05-20 12:55:01 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-20 12:55:49 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-20 12:55:50 WARN  c.B.u.UserServiceApplication - This is a warning message - check configuration
+2025-05-20 12:55:50 WARN  c.B.u.UserServiceApplication - User 123 has multiple failed login attempts

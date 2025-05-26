@@ -1,7 +1,5 @@
 package com.Bites.user_service.controller;
 
-
-
 import com.Bites.user_service.config.JwtProvider;
 import com.Bites.user_service.entity.User;
 import com.Bites.user_service.exception.UserException;
@@ -10,6 +8,8 @@ import com.Bites.user_service.request.LoginRequest;
 import com.Bites.user_service.response.AuthResponse;
 import com.Bites.user_service.service.CustomeUserServiceImplementation;
 import com.Bites.user_service.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,10 +27,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.UUID;
 
-
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+	private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
 	@Autowired
 	private UserRepository userRepository;
@@ -49,16 +49,16 @@ public class AuthController {
 	public ResponseEntity<AuthResponse> createUserHandler(
 			@RequestBody User user) throws UserException {
 
+		logger.info("Received signup request for email: {}", user.getEmail());
 		String email = user.getEmail();
 		String password = user.getPassword();
 		String fullName = user.getFullName();
 		String mobile=user.getMobile();
 
-
 		User isEmailExist = userRepository.findByEmail(email);
 
 		if (isEmailExist!=null) {
-
+			logger.warn("Signup failed - Email already exists: {}", email);
 			throw new UserException("This email already exists with another account.");
 		}
 
@@ -70,61 +70,71 @@ public class AuthController {
 		createdUser.setRole("CUSTOMER");
 		createdUser.setPassword(passwordEncoder.encode(password));
 
-		createdUser.setCartId(generateUniqueCartId());
+		String cartId = generateUniqueCartId();
+		logger.debug("Generated new cart ID: {} for user: {}", cartId, email);
+		createdUser.setCartId(cartId);
 
 		User savedUser = userRepository.save(createdUser);
+		logger.info("Successfully created new user with ID: {}", savedUser.getId());
 
 		Authentication authentication = new UsernamePasswordAuthenticationToken(email, password);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		String token = JwtProvider.generateToken(authentication);
+		logger.debug("Generated JWT token for user: {}", email);
 
 		AuthResponse authResponse = new AuthResponse();
 		authResponse.setJwt(token);
 		authResponse.setMessage("Signup Successful! Please log in.");
 
 		return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.OK);
-
 	}
 
 	@PostMapping("/signin")
 	public ResponseEntity<AuthResponse> signin(@RequestBody LoginRequest loginRequest) {
-
 		String username = loginRequest.getEmail();
+		logger.info("Received signin request for user: {}", username);
+
 		String password = loginRequest.getPassword();
 
-		System.out.println(username + " ----- " + password);
+		try {
+			Authentication authentication = authenticate(username, password);
+			SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		Authentication authentication = authenticate(username, password);
-		SecurityContextHolder.getContext().setAuthentication(authentication);
+			String token = JwtProvider.generateToken(authentication);
+			logger.info("User successfully authenticated: {}", username);
 
-		String token = JwtProvider.generateToken(authentication);
-		AuthResponse authResponse = new AuthResponse();
+			AuthResponse authResponse = new AuthResponse();
+			authResponse.setMessage("Login Success");
+			authResponse.setJwt(token);
 
-		authResponse.setMessage("Login Success");
-		authResponse.setJwt(token);
-
-		return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.OK);
+			return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.OK);
+		} catch (BadCredentialsException e) {
+			logger.warn("Authentication failed for user: {}", username);
+			throw e;
+		}
 	}
 
 	private Authentication authenticate(String username, String password) {
+		logger.debug("Attempting to authenticate user: {}", username);
 		UserDetails userDetails = customUserDetails.loadUserByUsername(username);
 
-		System.out.println("sign in userDetails - " + userDetails);
-
 		if (userDetails == null) {
-			System.out.println("sign in userDetails - null " + userDetails);
+			logger.warn("Authentication failed - User not found: {}", username);
 			throw new BadCredentialsException("Invalid username or password");
 		}
 		if (!passwordEncoder.matches(password, userDetails.getPassword())) {
-			System.out.println("sign in userDetails - password not match " + userDetails);
+			logger.warn("Authentication failed - Invalid password for user: {}", username);
 			throw new BadCredentialsException("Invalid username or password");
 		}
+		logger.debug("User successfully authenticated: {}", username);
 		return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 	}
 
 	private String generateUniqueCartId() {
-		return "CART-" + UUID.randomUUID().toString();
+		String cartId = "CART-" + UUID.randomUUID().toString();
+		logger.debug("Generated new cart ID: {}", cartId);
+		return cartId;
 	}
 	
 }
