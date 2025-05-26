@@ -1,0 +1,229 @@
+{
+	"info": {
+		"_postman_id": "07bc33af-2e7c-45bf-92b4-107b61fe8164",
+		"name": "cart_service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31301900"
+	},
+	"item": [
+		{
+			"name": "Addtocart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3Mzk4OTM2NTQsImV4cCI6MTczOTk4MDA1NCwiZW1haWwiOiJqZWV0aGFuMTdAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOiIifQ.9zOXSA6fnDcWIAa9LBHwkI9nfnwzbxJ9FpfBrDACQHkOWwNo7xsKup7V9gEXvdK5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5003/cart/add/54321/200",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5003",
+					"path": [
+						"cart",
+						"add",
+						"54321",
+						"200"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getcart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3NDAwMjM3MzIsImV4cCI6MTc0MDExMDEzMiwiZW1haWwiOiJqZWV0aGFuMTdAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOiIifQ.lAIDfbPaOVIYCMJ6J5_3pcrb9Sxf_bo9VJzldEIfAuebA9Tn59923K_3h_AUoLOc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5003/cart",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5003",
+					"path": [
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete item from cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3Mzk3MTg1OTQsImV4cCI6MTczOTgwNDk5NCwiZW1haWwiOiJqZWV0aGFuMTdAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOiIifQ.3CH1pzUCWw8xYVyOyaoajXHDgFun4RsrHhOj0zEGzbt-w_epjG1hlqEbkAgBZ8SV",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5003/cart/remove/54321",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5003",
+					"path": [
+						"cart",
+						"remove",
+						"54321"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "clear cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3Mzk4OTM2NTQsImV4cCI6MTczOTk4MDA1NCwiZW1haWwiOiJqZWV0aGFuMTdAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOiIifQ.9zOXSA6fnDcWIAa9LBHwkI9nfnwzbxJ9FpfBrDACQHkOWwNo7xsKup7V9gEXvdK5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5003/cart",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5003",
+					"path": [
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addsummary",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MzkxODI2ODksImV4cCI6MTczOTI2OTA4OSwiZW1haWwiOiJqZWV0aGFuQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiIn0.pwwTRQruXnv9gKvtfh0ILgLu6vkdlH1_RZiLjI1oiGqTnFwrV0xxx3dkSsVCyObb",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"12345\",\r\n  \"name\": \"Joe Doe\",\r\n  \"mobileNumber\": \"+1234567890\",\r\n  \"email\": \"joe@example.com\",\r\n  \"address\": \"123 Main Street, City, Country\",\r\n  \"additionalDetails\": \"Leave at the doorstep\",\r\n  \"paymentMethod\": \"Credit Card\",\r\n  \"totalAmount\": 99.99,\r\n  \"products\": [\r\n    \"product1\",\r\n    \"product2\",\r\n    \"product3\"\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5003/summary/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5003",
+					"path": [
+						"summary",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add shipment details",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3Mzk3MTg1OTQsImV4cCI6MTczOTgwNDk5NCwiZW1haWwiOiJqZWV0aGFuMTdAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOiIifQ.3CH1pzUCWw8xYVyOyaoajXHDgFun4RsrHhOj0zEGzbt-w_epjG1hlqEbkAgBZ8SV",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"mobileNumber\": \"9876543210\",\r\n  \"email\": \"john.doe@example.com\",\r\n  \"address\": \"123 Main St, City, Country\",\r\n  \"additionalDeliveryDetails\": \"Leave at the front door.\",\r\n  \"paymentMethod\": \"Pay on Delivery\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5003/cart/addshipmentdetails",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5003",
+					"path": [
+						"cart",
+						"addshipmentdetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get cart by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5003/cart/CART-f6ff11b6-bf51-4c4e-ab6b-f23d494e11d0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5003",
+					"path": [
+						"cart",
+						"CART-f6ff11b6-bf51-4c4e-ab6b-f23d494e11d0"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

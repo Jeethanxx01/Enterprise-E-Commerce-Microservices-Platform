@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "52c1ccce-c545-452c-9058-f9522cd23349",
+		"name": "user Microservice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31301900"
+	},
+	"item": [
+		{
+			"name": "user signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"joe@gmail.com\",\r\n  \"password\": \"123\",\r\n  \"fullName\": \"Joe Doe\",\r\n  \"mobile\": \"9876543210\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user Login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3NDgyODY5NDEsImV4cCI6MTc0ODM3MzM0MSwiZW1haWwiOiJqb2VAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOiIifQ.DBQAyM7lFNMuaUeRQqTSv--eFpdYDIo3sgZ6DklZPcwr1WueXL-Kr0yKTl5201zi",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"joe@gmail.com\",\r\n  \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/auth/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "user profile by jwt",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3NDgyODcwMDcsImV4cCI6MTc0ODM3MzQwNywiZW1haWwiOiJqb2VAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOiIifQ.HaQ71krZx765USj-NHXVgNAAy7KQ3kVG8YzglFdeaqe0bjmwjQwtAmM19glam_Zc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/users/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"users",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "6ac6557c-f338-4c09-8136-58b142ebb83e",
+		"name": "order-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31301900"
+	},
+	"item": [
+		{
+			"name": "save order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3Mzk5NTMyNjUsImV4cCI6MTc0MDAzOTY2NSwiZW1haWwiOiJqZWV0aGFuMTdAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOiIifQ.e1hu4uOnd8MlTuVLuPoCpC5QMde-LORcjAltdTLp7GaTNxre1xfDyA-HWvdQa_KK",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5004/order/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5004",
+					"path": [
+						"order",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get orders",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3Mzk5NTMyNjUsImV4cCI6MTc0MDAzOTY2NSwiZW1haWwiOiJqZWV0aGFuMTdAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOiIifQ.e1hu4uOnd8MlTuVLuPoCpC5QMde-LORcjAltdTLp7GaTNxre1xfDyA-HWvdQa_KK",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5004/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5004",
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3Mzk5NTMyNjUsImV4cCI6MTc0MDAzOTY2NSwiZW1haWwiOiJqZWV0aGFuMTdAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOiIifQ.e1hu4uOnd8MlTuVLuPoCpC5QMde-LORcjAltdTLp7GaTNxre1xfDyA-HWvdQa_KK",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5004/order/607340a5-e07b-4700-aade-be7fb265c38b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5004",
+					"path": [
+						"order",
+						"607340a5-e07b-4700-aade-be7fb265c38b"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
