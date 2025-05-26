@@ -10,6 +10,26 @@
 [![ELK](https://img.shields.io/badge/ELK-8.9.0-orange.svg)](https://www.elastic.co/what-is/elk-stack)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
+## 📸 Project Visuals
+
+View the complete project visuals including UI screenshots, architecture diagrams, and monitoring dashboards in our [Project Images Gallery](https://github.com/Jeethanxx01/E-commerce/tree/main/docs/images).
+
+## 📸 Project UI & Architecture
+
+### User Interface
+![Dashboard](https://raw.githubusercontent.com/Jeethanxx01/E-commerce/main/Frontend/src/assets/dashboard.png)
+![Product List](https://raw.githubusercontent.com/Jeethanxx01/E-commerce/main/Frontend/src/assets/product-list.png)
+![Cart](https://raw.githubusercontent.com/Jeethanxx01/E-commerce/main/Frontend/src/assets/cart.png)
+![Order History](https://raw.githubusercontent.com/Jeethanxx01/E-commerce/main/Frontend/src/assets/orders.png)
+
+### Architecture Overview
+![Microservices Architecture](https://raw.githubusercontent.com/Jeethanxx01/E-commerce/main/docs/architecture.png)
+![Service Communication](https://raw.githubusercontent.com/Jeethanxx01/E-commerce/main/docs/service-communication.png)
+
+### Monitoring & Logging
+![Kibana Dashboard](https://raw.githubusercontent.com/Jeethanxx01/E-commerce/main/docs/kibana-dashboard.png)
+![Service Health](https://raw.githubusercontent.com/Jeethanxx01/E-commerce/main/docs/service-health.png)
+
 A modern, scalable e-commerce platform built with microservices architecture, demonstrating enterprise-grade software development practices and cloud-native design patterns. Features real-time updates through Kafka, comprehensive logging with ELK stack, and containerized deployment.
 
 ## ✨ Key Features
@@ -113,6 +133,45 @@ A modern, scalable e-commerce platform built with microservices architecture, de
    cd Frontend
    npm start
    ```
+
+ ## 🔄 Service Interactions
+
+### Order Processing Flow
+```mermaid
+sequenceDiagram
+    participant User
+    participant CartService
+    participant OrderService
+    participant OrderDB
+    participant Kafka
+    participant ProductService
+    participant ProductDB
+
+    User->>CartService: Add item to cart
+    User->>CartService: Checkout
+    CartService->>OrderService: Place order (REST API)
+    OrderService->>OrderDB: Save order
+    OrderService->>Kafka: Publish "order-placed" event
+    Kafka->>ProductService: (event consumed)
+    ProductService->>ProductDB: Decrement stock
+```
+
+### Order Cancellation Flow
+```mermaid
+sequenceDiagram
+    participant User
+    participant OrderService
+    participant OrderDB
+    participant Kafka
+    participant ProductService
+    participant ProductDB
+
+    User->>OrderService: Cancel order
+    OrderService->>OrderDB: Update order status
+    OrderService->>Kafka: Publish "order-cancelled" event
+    Kafka->>ProductService: (event consumed)
+    ProductService->>ProductDB: Increment stock
+```
 
 ## 📊 Monitoring and Logging
 
