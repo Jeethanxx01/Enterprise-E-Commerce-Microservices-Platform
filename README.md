@@ -21,13 +21,9 @@ A modern, scalable e-commerce platform built with microservices architecture, de
 
 - 🛍️ **Product Management**
   - Real-time inventory tracking via Kafka
-  - Advanced search and filtering
+  - search and filtering
   - Category management
   - Asynchronous updates for inventory changes
-
-- 🛒 **Shopping Experience**
-  - Persistent shopping cart
-  - Containerized frontend for consistent deployment
 
 - 💳 **Order Processing**
   - Multi-step checkout
@@ -53,7 +49,7 @@ A modern, scalable e-commerce platform built with microservices architecture, de
 3. **Cart Service** (`cart_service/`)
    - Shopping cart management
    - Price calculations
-   - Cart persistence
+   - Cart Caching on redis cloud
 
 4. **Order Service** (`order-service/`)
    - Order processing
@@ -67,13 +63,14 @@ A modern, scalable e-commerce platform built with microservices architecture, de
 - **Service Discovery**: Eureka Server
 - **Database**: 
   - MongoDB (Product & Order data)
-  - PostgreSQL (User data)
-  - Redis (Caching & Cart)
+  - MySQL (User data)
+  - Redis ( Cart Caching)
 - **Message Broker**: Apache Kafka
 - **Security**: Spring Security, JWT
-- **Documentation**: Swagger/OpenAPI
+- **Documentation**: Swagger
 - **Logging**: ELK Stack (Elasticsearch, Logstash, Kibana)
 - **Logging Framework**: Logback with Logstash integration
+- **Containerization**: Docker
 
 #### Frontend
 - **Framework**: React 18
@@ -82,8 +79,6 @@ A modern, scalable e-commerce platform built with microservices architecture, de
 - **Styling**: Tailwind CSS
 - **API Client**: Axios
 - **Routing**: React Router DOM
-- **Containerization**: Docker
-- **Real-time Updates**: Kafka integration
 
 ## 🚀 Getting Started
 
@@ -94,7 +89,7 @@ A modern, scalable e-commerce platform built with microservices architecture, de
 - MongoDB
 - Redis
 - Apache Kafka
-- PostgreSQL
+- MySQL
 - ELK Stack (Elasticsearch, Logstash, Kibana)
 
 ### Installation
@@ -128,7 +123,7 @@ A modern, scalable e-commerce platform built with microservices architecture, de
 - **Kibana**: Real-time log visualization and analysis
 - **Logback Integration**: Structured logging with Logstash appender
 
-### Monitoring Features
+### Monitoring Features in kibana
 - Real-time log streaming
 - Custom dashboards for different services
 - Authentication event tracking
@@ -138,7 +133,7 @@ A modern, scalable e-commerce platform built with microservices architecture, de
 ## 🔧 Development
 
 
-## 📈 Performance Optimizations recommendations
+### 📈 Performance Optimizations recommendations
 
 - Redis caching for frequently accessed data
 - Asynchronous processing with Kafka
