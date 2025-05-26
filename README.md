@@ -10,11 +10,12 @@
 [![ELK](https://img.shields.io/badge/ELK-8.9.0-orange.svg)](https://www.elastic.co/what-is/elk-stack)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
+
+A modern, scalable e-commerce platform built with microservices architecture, demonstrating enterprise-grade software development practices and cloud-native design patterns. Features real-time updates through Kafka, comprehensive logging with ELK stack, and containerized deployment.
+
 ## 📸 Project Visuals
 
 View the all project related  visuals including UI , architecture diagrams, and monitoring dashboards in [Project Images](https://github.com/Jeethanxx01/E-commerce/tree/main/docs/images).
-
-A modern, scalable e-commerce platform built with microservices architecture, demonstrating enterprise-grade software development practices and cloud-native design patterns. Features real-time updates through Kafka, comprehensive logging with ELK stack, and containerized deployment.
 
 ## ✨ Key Features
 
@@ -118,11 +119,7 @@ A modern, scalable e-commerce platform built with microservices architecture, de
    npm start
    ```
 
- ## 🔄 Service Interactions
-
-## 🔄 Service Interaction Flows
-
-Instead of diagrams, the service interactions are described below for clarity across different viewing environments.
+## 🔄 Service Interaction Flows with Kafka
 
 ### Order Processing Flow
 
