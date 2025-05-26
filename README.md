@@ -187,6 +187,19 @@ View the all project related  visuals including UI , architecture diagrams, and 
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+
+
+## 📚 API Documentation
+
+Explore the API endpoints for each microservice using our Postman collections. These collections provide ready-to-use requests for testing and understanding the functionalities of the platform's backend services.
+
+- 🔐 **User Service API**: [View Collection](https://github.com/Jeethanxx01/Microservice-E-commerce-platform/blob/main/Postman_api_collections/user%20Microservice.postman_collection.json)
+- 🛍️ **Product Service API**: [View Collection](https://github.com/Jeethanxx01/Microservice-E-commerce-platform/blob/main/Postman_api_collections/product-service.postman_collection.json)
+- 🛒 **Cart Service API**: [View Collection](https://github.com/Jeethanxx01/Microservice-E-commerce-platform/blob/main/Postman_api_collections/cart_service.postman_collection.json)
+- 💳 **Order Service API**: [View Collection](https://github.com/Jeethanxx01/Microservice-E-commerce-platform/blob/main/Postman_api_collections/order-service.postman_collection.json)
+
+To use these collections, you'll need to have Postman installed. Simply import the JSON files into your Postman workspace.
+
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -194,7 +207,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👥 Authors
 
 - **Jeethan Joel Crasta**-  [GitHub](https://github.com/Jeethanxx01)
-
-
-
-⭐ Star this repository if you find it helpful!
