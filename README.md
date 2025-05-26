@@ -139,7 +139,7 @@ View the all project related  visuals including UI , architecture diagrams, and 
 4.  **Kafka** delivers the event to the **ProductService**, which consumes it.
 5.  The **ProductService** increments the stock quantity for the cancelled item in the **Product DB**.
 
-![Screenshot](Images\Service_Interaction.png)
+![Screenshot](Images\service.png)
 
 ## 📊 Monitoring and Logging
 
@@ -194,6 +194,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👥 Authors
 
 - **Jeethan Joel Crasta**-  [GitHub](https://github.com/Jeethanxx01)
+
 
 
 ⭐ Star this repository if you find it helpful!
