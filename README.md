@@ -1,111 +1,215 @@
-# 🛒 E-Commerce Microservices Platform
+# 🛍️ Enterprise E-Commerce Microservices Platform
 
-This project demonstrates a comprehensive **microservice architecture** for an e-commerce platform, focusing on **role-based authentication**, **efficient data handling**, and **asynchronous communication** to ensure **scalability**, **performance**, and **maintainability**.
+[![Java](https://img.shields.io/badge/Java-17-orange.svg)](https://www.oracle.com/java/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.1.0-brightgreen.svg)](https://spring.io/projects/spring-boot)
+[![React](https://img.shields.io/badge/React-18-blue.svg)](https://reactjs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-6.0-green.svg)](https://www.mongodb.com/)
+[![Redis](https://img.shields.io/badge/Redis-7.0-red.svg)](https://redis.io/)
+[![Kafka](https://img.shields.io/badge/Kafka-3.4-black.svg)](https://kafka.apache.org/)
+[![Docker](https://img.shields.io/badge/Docker-24.0-blue.svg)](https://www.docker.com/)
+[![ELK](https://img.shields.io/badge/ELK-8.9.0-orange.svg)](https://www.elastic.co/what-is/elk-stack)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
----
+A modern, scalable e-commerce platform built with microservices architecture, demonstrating enterprise-grade software development practices and cloud-native design patterns. Features real-time updates through Kafka, comprehensive logging with ELK stack, and containerized deployment.
 
-## 🔧 Tech Stack
+## ✨ Key Features
 
-### 🖥️ Backend
-- **Spring Boot**
-- **Spring Gateway Server** – API Gateway for routing
-- **Eureka Server** – Service discovery
-- **JWT Authentication** – Role-based access control
-- **SQL Database** – For user authentication
-- **MongoDB** – For product management
-- **Redis** – In-memory cart data storage
-- **Apache Kafka** – For asynchronous inventory updates
-- **JPA & MongoRepository** – ORM tools
+- 🔐 **Secure Authentication & Authorization**
+  - JWT-based authentication
+  - Role-based access control
+  - OAuth2 integration ready
+  - Enhanced logging for authentication events
 
-### 🖼️ Frontend
-- **React.js**
-- **Redux Toolkit** – State management
-- **Axios** – API communication
-- **React Router DOM** – Client-side routing
-- **Tailwind CSS & Material UI** – Responsive UI design
+- 🛍️ **Product Management**
+  - Real-time inventory tracking via Kafka
+  - Advanced search and filtering
+  - Category management
+  - Product recommendations
+  - Asynchronous updates for inventory changes
 
----
+- 🛒 **Shopping Experience**
+  - Persistent shopping cart
+  - Real-time price updates through Kafka
+  - Wishlist functionality
+  - Order tracking
+  - Containerized frontend for consistent deployment
 
-## 📦 Microservices Overview
+- 💳 **Order Processing**
+  - Multi-step checkout
+  - Payment gateway integration
+  - Order history and tracking
+  - Email notifications
+  - Asynchronous order status updates
 
-### 🔐 Authentication Service
-- Implements **JWT-based role authentication**
-- Stores user credentials in **SQL Database**
-- Handles **login**, **registration**, and **authorization**
+## 🏗️ Architecture
 
-### 📦 Product Service
-- Manages product listings and availability
-- Uses **MongoDB** for product data
-- Integrates with **Kafka** for real-time stock updates
+### Microservices Breakdown
 
-### 🛒 Cart Service
-- Uses **Redis** for fast, in-memory cart operations
-- Ensures efficient session management for user carts
+1. **User Service** (`user-service/`)
+   - User management and authentication
+   - Profile management
+   - Role-based permissions
+   - Enhanced logging with ELK integration
 
-### 📦 Order Service
-- Handles **order placement**, **order history**, and **payment methods**
-- Ensures reliable transaction workflows
+2. **Product Service** (`product-service/`)
+   - Product catalog management
+   - Inventory tracking
+   - Search and filtering
+   - Kafka-based real-time updates
 
----
+3. **Cart Service** (`cart_service/`)
+   - Shopping cart management
+   - Price calculations
+   - Cart persistence
+   - Real-time price synchronization
 
-## 🔁 Communication & Coordination
-- **Eureka Server** enables service discovery
-- **Spring Cloud Gateway** routes requests to appropriate microservices
-- **Apache Kafka** ensures asynchronous, decoupled communication for real-time updates
+4. **Order Service** (`order-service/`)
+   - Order processing
+   - Payment integration
+   - Order tracking
+   - Kafka-based order status updates
 
----
+### Technology Stack
 
-## 🧱 Architectural Principles
-- Built using **Object-Oriented Programming (OOP)**
-- Follows **System Design best practices**
-- Ensures **loose coupling** and **high cohesion** across services
+#### Backend Services
+- **Core Framework**: Spring Boot 3.1.0
+- **API Gateway**: Spring Cloud Gateway
+- **Service Discovery**: Eureka Server
+- **Database**: 
+  - MongoDB (Product & Order data)
+  - PostgreSQL (User data)
+  - Redis (Caching & Cart)
+- **Message Broker**: Apache Kafka
+- **Security**: Spring Security, JWT
+- **Documentation**: Swagger/OpenAPI
+- **Logging**: ELK Stack (Elasticsearch, Logstash, Kibana)
+- **Logging Framework**: Logback with Logstash integration
 
----
+#### Frontend
+- **Framework**: React 18
+- **State Management**: Redux Toolkit
+- **UI Components**: Material-UI
+- **Styling**: Tailwind CSS
+- **API Client**: Axios
+- **Routing**: React Router DOM
+- **Containerization**: Docker
+- **Real-time Updates**: Kafka integration
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Java 17+
-- Node.js 16+
-- Docker (optional for containerization)
-- MongoDB, Redis, Kafka, and SQL database setup
+- Java 17 or higher
+- Node.js 16 or higher
+- Docker and Docker Compose
+- MongoDB
+- Redis
+- Apache Kafka
+- PostgreSQL
+- ELK Stack (Elasticsearch, Logstash, Kibana)
 
-### Clone the Repository
-```bash
-git clone https://github.com/your-username/ecommerce-microservices-platform.git
-cd ecommerce-microservices-platform
-```
-Run Backend Services
+### Installation
 
-```bash
-  cd backend
-./mvnw spring-boot:run
-```
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/your-username/ecommerce-microservices-platform.git
+   cd ecommerce-microservices-platform
+   ```
 
-Run Frontend
+2. **Start Infrastructure Services**
+   ```bash
+   cd elk-docker-setup
+   docker-compose up -d
+   ```
 
-```bash
-  cd frontend
-  npm install
-  npm start
-```
+3. **Build and Run Microservices**
+   ```bash
+   cd Microservices
+   ./mvnw clean install
+   docker-compose up -d
+   ```
 
-## Folder Structure
+4. **Start Frontend**
+   ```bash
+   cd Frontend
+   docker-compose up -d
+   ```
 
-├── backend\
-│   ├── auth-service\
-│   ├── product-service\
-│   ├── cart-service\
-│   ├── order-service\
-│   ├── gateway-service\
-│   └── eureka-server\
-├── frontend\
-│   └── react-app\
-└── README.md
-## 📃 License
+## 📊 Monitoring and Logging
 
-This project is licensed under the MIT License - see the   [LICENSE](https://github.com/Jeethanxx01/E-commerce/blob/main/LICENSE) file for details
+### ELK Stack Integration
+- **Centralized Logging**: All microservices logs are collected and processed
+- **Logstash Configuration**: Custom patterns for structured logging
+- **Elasticsearch**: Efficient log storage and indexing
+- **Kibana**: Real-time log visualization and analysis
+- **Logback Integration**: Structured logging with Logstash appender
 
+### Monitoring Features
+- Real-time log streaming
+- Custom dashboards for different services
+- Authentication event tracking
+- Performance metrics visualization
+- Error tracking and alerting
 
-## 🙌 Contributions
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## 🔧 Development
+
+### Code Style
+- Follows Google Java Style Guide
+- ESLint and Prettier for frontend code
+- Consistent code formatting across services
+- Structured logging patterns
+
+### Testing
+- Unit tests with JUnit 5
+- Integration tests with TestContainers
+- Frontend tests with Jest and React Testing Library
+- Kafka integration tests
+
+## 📈 Performance Optimizations
+
+- Redis caching for frequently accessed data
+- Asynchronous processing with Kafka
+- Database indexing and query optimization
+- CDN integration for static assets
+- Load balancing and horizontal scaling
+- Containerized deployment for consistent environments
+- Optimized logging with Logback
+
+## 🔐 Security Features
+
+- JWT-based authentication
+- Role-based access control
+- HTTPS enforcement
+- Input validation and sanitization
+- Rate limiting
+- CORS configuration
+- SQL injection prevention
+- XSS protection
+- Enhanced security logging
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Authors
+
+- **Your Name** - *Initial work* - [Your GitHub](https://github.com/yourusername)
+
+## 🙏 Acknowledgments
+
+- Spring Boot team for the amazing framework
+- React team for the frontend library
+- Elastic team for the ELK stack
+- Apache Kafka team for the messaging system
+- All contributors who have helped shape this project
+
+---
+
+⭐ Star this repository if you find it helpful!
