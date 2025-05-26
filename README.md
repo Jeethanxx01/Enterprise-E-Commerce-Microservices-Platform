@@ -122,7 +122,7 @@ A modern, scalable e-commerce platform built with microservices architecture, de
 
 ### Order Processing Flow
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '16px', 'fontFamily': 'arial', 'primaryColor': '#ffffff', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666666', 'lineColor': '#1a1a1a', 'secondaryColor': '#f2f2f2', 'tertiaryColor': '#e6e6e6'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '16px', 'fontFamily': 'arial', 'primaryColor': '#343a40', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#454d55', 'lineColor': '#1a1a1a', 'secondaryColor': '#f2f2f2', 'tertiaryColor': '#e6e6e6'}}}%%
 sequenceDiagram
     participant User
     participant CartService
@@ -143,7 +143,7 @@ sequenceDiagram
 
 ### Order Cancellation Flow
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '16px', 'fontFamily': 'arial', 'primaryColor': '#ffffff', 'primaryTextColor': '#1a1a1a', 'primaryBorderColor': '#666666', 'lineColor': '#1a1a1a', 'secondaryColor': '#f2f2f2', 'tertiaryColor': '#e6e6e6'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '16px', 'fontFamily': 'arial', 'primaryColor': '#343a40', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#454d55', 'lineColor': '#1a1a1a', 'secondaryColor': '#f2f2f2', 'tertiaryColor': '#e6e6e6'}}}%%
 sequenceDiagram
     participant User
     participant OrderService
