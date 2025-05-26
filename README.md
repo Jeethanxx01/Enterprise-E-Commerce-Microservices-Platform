@@ -150,6 +150,8 @@ View the all project related  visuals including UI , architecture diagrams, and 
 - **Kibana**: Real-time log visualization and analysis
 - **Logback Integration**: Structured logging with Logstash appender
 
+![ELK Stack Integration](Images/elk.jpg)
+
 ### Monitoring Features in kibana
 - Real-time log streaming
 - Custom dashboards for different services
