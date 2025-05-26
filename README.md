@@ -15,7 +15,7 @@ A modern, scalable e-commerce platform built with microservices architecture, de
 
 ## 📸 Project Visuals
 
-View the all project related  visuals including UI , architecture diagrams, and monitoring dashboards in [Project Images](https://github.com/Jeethanxx01/E-commerce/tree/main/docs/images).
+View the all project related  visuals including UI , architecture diagrams, and monitoring dashboards in [Project Images](https://github.com/Jeethanxx01/Microservice-E-commerce-platform/tree/main/Images).
 
 ## ✨ Key Features
 
@@ -139,7 +139,7 @@ View the all project related  visuals including UI , architecture diagrams, and 
 4.  **Kafka** delivers the event to the **ProductService**, which consumes it.
 5.  The **ProductService** increments the stock quantity for the cancelled item in the **Product DB**.
 
-![Screenshot](Images/Screenshot%202025-05-26%20235228.png)
+![Screenshot](Images\Service_Interaction.png)
 
 ## 📊 Monitoring and Logging
 
