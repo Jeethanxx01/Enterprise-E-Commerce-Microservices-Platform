@@ -12,7 +12,7 @@
 
 ## 📸 Project Visuals
 
-View the complete project visuals including UI , architecture diagrams, and monitoring dashboards in our [Project Images Gallery](https://github.com/Jeethanxx01/E-commerce/tree/main/docs/images).
+View the all project related  visuals including UI , architecture diagrams, and monitoring dashboards in [Project Images](https://github.com/Jeethanxx01/E-commerce/tree/main/docs/images).
 
 A modern, scalable e-commerce platform built with microservices architecture, demonstrating enterprise-grade software development practices and cloud-native design patterns. Features real-time updates through Kafka, comprehensive logging with ELK stack, and containerized deployment.
 
@@ -141,6 +141,8 @@ Instead of diagrams, the service interactions are described below for clarity ac
 3.  The **OrderService** publishes an "order-cancelled" event to **Kafka**.
 4.  **Kafka** delivers the event to the **ProductService**, which consumes it.
 5.  The **ProductService** increments the stock quantity for the cancelled item in the **Product DB**.
+
+![Screenshot](Images/Screenshot%202025-05-26%20235228.png)
 
 ## 📊 Monitoring and Logging
 
