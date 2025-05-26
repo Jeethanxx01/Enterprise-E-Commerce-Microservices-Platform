@@ -120,44 +120,27 @@ A modern, scalable e-commerce platform built with microservices architecture, de
 
  ## 🔄 Service Interactions
 
-### Order Processing Flow
-```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '16px', 'fontFamily': 'arial', 'primaryColor': '#343a40', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#454d55', 'lineColor': '#1a1a1a', 'secondaryColor': '#f2f2f2', 'tertiaryColor': '#e6e6e6'}}}%%
-sequenceDiagram
-    participant User
-    participant CartService
-    participant OrderService
-    participant OrderDB
-    participant Kafka
-    participant ProductService
-    participant ProductDB
+## 🔄 Service Interaction Flows
 
-    User->>CartService: Add item to cart
-    User->>CartService: Checkout
-    CartService->>OrderService: Place order (REST API)
-    OrderService->>OrderDB: Save order
-    OrderService->>Kafka: Publish "order-placed" event
-    Kafka->>ProductService: (event consumed)
-    ProductService->>ProductDB: Decrement stock
-```
+Instead of diagrams, the service interactions are described below for clarity across different viewing environments.
+
+### Order Processing Flow
+
+1.  **User** initiates the process by sending a request to the **CartService** to add an item.
+2.  **User** proceeds to checkout, sending a request to the **CartService**.
+3.  The **CartService** sends a request to the **OrderService** to place the order (via REST API).
+4.  The **OrderService** saves the new order details to the **Order DB**.
+5.  The **OrderService** publishes an "order-placed" event to **Kafka**.
+6.  **Kafka** delivers the event to the **ProductService**, which consumes it.
+7.  The **ProductService** updates the stock quantity for the item in the **Product DB**.
 
 ### Order Cancellation Flow
-```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '16px', 'fontFamily': 'arial', 'primaryColor': '#343a40', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#454d55', 'lineColor': '#1a1a1a', 'secondaryColor': '#f2f2f2', 'tertiaryColor': '#e6e6e6'}}}%%
-sequenceDiagram
-    participant User
-    participant OrderService
-    participant OrderDB
-    participant Kafka
-    participant ProductService
-    participant ProductDB
 
-    User->>OrderService: Cancel order
-    OrderService->>OrderDB: Update order status
-    OrderService->>Kafka: Publish "order-cancelled" event
-    Kafka->>ProductService: (event consumed)
-    ProductService->>ProductDB: Increment stock
-```
+1.  **User** initiates the cancellation by sending a request to the **OrderService**.
+2.  The **OrderService** updates the order status to 'cancelled' in the **Order DB**.
+3.  The **OrderService** publishes an "order-cancelled" event to **Kafka**.
+4.  **Kafka** delivers the event to the **ProductService**, which consumes it.
+5.  The **ProductService** increments the stock quantity for the cancelled item in the **Product DB**.
 
 ## 📊 Monitoring and Logging
 
