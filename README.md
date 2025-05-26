@@ -102,8 +102,7 @@ A modern, scalable e-commerce platform built with microservices architecture, de
 1. **Clone the Repository**
    ```bash
    git clone https://github.com/your-username/ecommerce-microservices-platform.git
-   cd ecommerce-microservices-platform
-   cd Microservices
+   cd ecommerce-microservices-platform/Microservices
    docker-compose up -d
    ```
    run all microservices in IDE
@@ -170,7 +169,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- **Jeethan Joel Crasta**- [Your GitHub](https://github.com/Jeethanxx01)
+- **Jeethan Joel Crasta**-  [GitHub](https://github.com/Jeethanxx01)
 
 
 ⭐ Star this repository if you find it helpful!
