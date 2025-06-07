@@ -288,18 +288,13 @@ Here are some example test cases demonstrating the AI service's ability to analy
 - Redis caching for frequently accessed data
 - Asynchronous processing with Kafka
 - Database indexing and query optimization
-- CDN integration for static assets
 - Load balancing and horizontal scaling
-- Containerized deployment for consistent environments
 - Optimized logging with Logback
 
 ## 🔐 Security Features
 
 - JWT-based authentication
 - Role-based access control
-- HTTPS enforcement
-- Input validation and sanitization
-- CORS configuration
 
 ## 🤝 Contributing
 
@@ -327,6 +322,6 @@ To use these collections, you'll need to have Postman installed. Simply import t
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Authors
+## 👥 Author
 
 - **Jeethan Joel Crasta**-  [GitHub](https://github.com/Jeethanxx01)
