@@ -1,6 +1,7 @@
 package com.Bites.product_service.service;
 import com.Bites.product_service.Repository.ProductRepository;
 import com.Bites.product_service.Repository.ReviewRepository;
+import com.Bites.product_service.client.ReviewAnalysisClient;
 import com.Bites.product_service.entity.Product;
 import com.Bites.product_service.entity.Review;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,30 +15,51 @@ import java.util.Optional;
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
-    private final ProductRepository productRepository; // ✅ Inject ProductRepository
+    private final ProductRepository productRepository;
+    private final ReviewAnalysisClient reviewAnalysisClient;
 
     @Autowired
-    public ReviewService(ReviewRepository reviewRepository, ProductRepository productRepository) {
+    public ReviewService(ReviewRepository reviewRepository, 
+                        ProductRepository productRepository,
+                        ReviewAnalysisClient reviewAnalysisClient) {
         this.reviewRepository = reviewRepository;
         this.productRepository = productRepository;
+        this.reviewAnalysisClient = reviewAnalysisClient;
     }
 
     public Review addReview(Review review, String productId) {
-        Review savedReview = reviewRepository.save(review); // ✅ Save review first
-
-        // Fetch the product and update its review list
+        // Fetch the product first to get its details
         Optional<Product> optionalProduct = productRepository.findById(productId);
-        if (optionalProduct.isPresent()) {
-            Product product = optionalProduct.get();
-
-            // ✅ Initialize the list if null
-            if (product.getReviews() == null) {
-                product.setReviews(new ArrayList<>());
-            }
-
-            product.getReviews().add(savedReview);
-            productRepository.save(product);  // ✅ Update product with new review
+        if (optionalProduct.isEmpty()) {
+            throw new RuntimeException("Product not found with id: " + productId);
         }
+        
+        Product product = optionalProduct.get();
+        
+        // Analyze the review
+        ReviewAnalysisClient.ReviewAnalysisResponse analysis = reviewAnalysisClient.analyzeReview(
+            new ReviewAnalysisClient.ReviewAnalysisRequest(
+                product.getName(),
+                product.getDescription(),
+                review.getComment()
+            )
+        );
+        
+        // Check if review is relevant
+        if (!analysis.is_relevant()) {
+            throw new RuntimeException(analysis.message());
+        }
+        
+        // Save the review if it's relevant
+        Review savedReview = reviewRepository.save(review);
+
+        // Initialize the list if null
+        if (product.getReviews() == null) {
+            product.setReviews(new ArrayList<>());
+        }
+
+        product.getReviews().add(savedReview);
+        productRepository.save(product);
 
         return savedReview;
     }

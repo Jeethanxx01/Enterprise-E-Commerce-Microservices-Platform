@@ -45,8 +45,13 @@ public class ReviewController {
         // Set the username from the user microservice
         review.setUsername(user.getFullName());
 
-        // Save the review in the database and associate it with the product
-        return reviewService.addReview(review, productId);
+        try {
+            // Save the review in the database and associate it with the product
+            return reviewService.addReview(review, productId);
+        } catch (RuntimeException ex) {
+            // If the review is not relevant or inappropriate, return 400 with the message
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
+        }
     }
 
 
