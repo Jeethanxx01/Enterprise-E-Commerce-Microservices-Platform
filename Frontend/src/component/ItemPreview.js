@@ -107,6 +107,7 @@ const ItemPreview = () => {
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(5);
   const [reviewError, setReviewError] = useState(null);
+  const [isSubmittingReview, setIsSubmittingReview] = useState(false);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -128,6 +129,7 @@ const ItemPreview = () => {
 
   const handleReviewSubmit = (e) => {
     e.preventDefault();
+    setIsSubmittingReview(true);
     const newReview = { id: Date.now().toString(), comment, rating };
 
     axios
@@ -145,9 +147,18 @@ const ItemPreview = () => {
         }));
         setComment("");
         setRating(5);
+        setReviewError(null);
       })
-      .catch(() => {
-        setReviewError("Failed to submit review. Please try again.");
+      .catch((error) => {
+        if (error.response && error.response.status === 400) {
+          const errorMessage = error.response.data.message || 'Invalid review content';
+          setReviewError(errorMessage);
+        } else {
+          setReviewError("Failed to submit review. Please try again.");
+        }
+      })
+      .finally(() => {
+        setIsSubmittingReview(false);
       });
   };
 
@@ -263,6 +274,7 @@ const ItemPreview = () => {
                 required 
                 className="border-2"
                 placeholder="Share your experience with this product..."
+                disabled={isSubmittingReview}
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -271,6 +283,7 @@ const ItemPreview = () => {
                 value={rating} 
                 onChange={(e) => setRating(Number(e.target.value))}
                 className="border-2"
+                disabled={isSubmittingReview}
               >
                 {[1, 2, 3, 4, 5].map((num) => (
                   <option key={num} value={num}>
@@ -284,13 +297,37 @@ const ItemPreview = () => {
               variant="success" 
               className="w-100 py-3"
               style={{ fontSize: "1.1rem" }}
+              disabled={isSubmittingReview}
             >
-              Submit Review
+              {isSubmittingReview ? (
+                <>
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    className="me-2"
+                  />
+                  Submitting Review...
+                </>
+              ) : (
+                'Submit Review'
+              )}
             </Button>
           </Form>
 
           {reviewError && (
-            <Alert variant="danger" className="mb-4" onClose={() => setReviewError(null)} dismissible>
+            <Alert 
+              variant="danger" 
+              className="mb-4" 
+              onClose={() => {
+                setReviewError(null);
+                setComment("");
+                setRating(5);
+              }} 
+              dismissible
+            >
               {reviewError}
             </Alert>
           )}
