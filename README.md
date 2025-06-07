@@ -11,7 +11,60 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 
-A modern, scalable microservices architecture showcasing LLM integration for intelligent text analysis, Kafka for asynchronous communication, and ELK stack for real-time observability. Designed with cloud-native principles, the system demonstrates advanced patterns like service orchestration, event-driven messaging, and AI-enhanced content moderation — ideal for high-throughput, modular platforms across domains beyond traditional e-commerce.
+A modern, scalable microservices architecture showcasing LLM integration for intelligent text analysis, Kafka for asynchronous communication, and ELK stack for real-time observability. Designed with event-driven messaging, and AI-enhanced content moderation.
+
+## 🏗️ Architecture & Implementation Overview
+
+### 🟦 1. Microservices Architecture & Frontend
+The platform consists of five core services: User, Product, Cart, Order, and AI Review Analysis, each independently deployable and built for specific functionality.
+
+- **User Service**: Uses Spring Boot and MySQL for managing user data and authentication.
+- **Product Service**: Built with Spring Boot and MongoDB to handle product listings and inventory.
+- **Cart Service**: Optimized using Redis and Spring Boot for fast, temporary session-based storage.
+- **Order Service**: Uses Spring Boot and MongoDB for managing transactional order data.
+- **AI Service**: Implemented using Flask and integrates with Google's Gemini LLM.
+
+The React-based frontend provides a responsive and interactive UI with client-side validation. It displays live product availability and includes character-limited review input (e.g., 100 characters max). Edge cases like product unavailability during checkout—even if it was available during carting—are gracefully handled with appropriate messaging, ensuring data integrity and a seamless user experience.
+
+### 🟨 2. Asynchronous & Synchronous Communication
+The system uses REST APIs for synchronous communication and Apache Kafka for asynchronous messaging to ensure loose coupling and scalability.
+
+**Order Placement Flow**: 
+- The user adds items via CartService and proceeds to checkout
+- The CartService calls the OrderService (via REST)
+- OrderService saves the order and publishes an "order-placed" event to Kafka
+- ProductService consumes this event and updates inventory in its MongoDB
+
+**Order Cancellation Flow**: 
+- If a user cancels an order, the OrderService updates the order status
+- OrderService publishes an "order-cancelled" event to Kafka
+- ProductService consumes this event and restores the product quantity
+
+This combination of synchronous REST APIs and asynchronous Kafka messaging ensures both reliability in critical transactions and real-time updates without service interdependence.
+
+### 🟣 3. Observability with ELK Stack
+The platform integrates the ELK Stack (Elasticsearch, Logstash, Kibana) for centralized logging and real-time observability:
+- Each microservice is configured to send logs to Logstash
+- Logstash parses and forwards logs to Elasticsearch
+- Kibana provides a visual dashboard for monitoring:
+  - Service health
+  - API usage
+  - Error trends
+  - Request latency
+
+This setup enables developers and DevOps teams to quickly trace issues, optimize performance, and ensure system transparency across all services.
+
+### 🟠 4. AI-Powered Review Analysis
+An AI Review Analysis Service adds an intelligent moderation layer using Google's Gemini API:
+- When a user submits a product review, the Product Service forwards it to the AI Service
+- This Flask-based service processes the review using Gemini LLM to assess:
+  - Relevance
+  - Sentiment
+  - Appropriateness
+- If the review passes validation, it is stored in the database
+- If not, a 400 Bad Request is returned with the reason (e.g., spam, offensive language, or irrelevance)
+
+This helps maintain a clean and constructive review section while filtering out promotions, toxic content, or misinformation.
 
 ## 📸 Project Visuals
 
