@@ -11,7 +11,7 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 
-A modern, scalable microservices architecture showcasing LLM integration for intelligent text analysis, Kafka for asynchronous communication, and ELK stack for real-time observability. Designed with event-driven messaging, and AI-enhanced content moderation.
+A modern, scalable microservices architecture showcasing LLM integration for intelligent text analysis, Kafka for asynchronous communication, and ELK stack for real-time observability. Designed for event-driven messaging, and AI-enhanced content moderation.
 
 ## 🏗️ Architecture & Implementation Overview
 
@@ -24,7 +24,7 @@ The platform consists of five core services: User, Product, Cart, Order, and AI 
 - **Order Service**: Uses Spring Boot and MongoDB for managing transactional order data.
 - **AI Service**: Implemented using Flask and integrates with Google's Gemini LLM.
 
-The React-based frontend provides a responsive and interactive UI with client-side validation. It displays live product availability and includes character-limited review input (e.g., 100 characters max). Edge cases like product unavailability during checkout—even if it was available during carting—are gracefully handled with appropriate messaging, ensuring data integrity and a seamless user experience.
+The frontend is a modern, responsive React application built using Create React App (CRA), styled with Material-UI and Bootstrap for a clean and user-friendly interface. It features a modular structure with reusable components, custom hooks, and well-organized routing using React Router DOM. Axios is used for seamless communication with backend services. The interface includes client-side validation, character-limited reviews (e.g., 100 characters max), and gracefully handles edge cases such as product unavailability during checkout. The application is optimized for performance and follows standard development and deployment practices, making it suitable for scalable web platforms.
 
 ### 🟨 2. Asynchronous & Synchronous Communication
 The system uses REST APIs for synchronous communication and Apache Kafka for asynchronous messaging to ensure loose coupling and scalability.
