@@ -1,4 +1,4 @@
-# 🛍️ Enterprise E-Commerce Microservices Platform
+# 🛍️ Microservices Architecture with LLM and Kafka Integration
 
 [![Java](https://img.shields.io/badge/Java-17-orange.svg)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.1.0-brightgreen.svg)](https://spring.io/projects/spring-boot)
@@ -11,7 +11,7 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 
-A modern, scalable e-commerce platform built with microservices architecture, demonstrating enterprise-grade software development practices and cloud-native design patterns. Features real-time updates through Kafka, comprehensive logging with ELK stack, and containerized deployment.
+A modern, scalable microservices architecture showcasing LLM integration for intelligent text analysis, Kafka for asynchronous communication, and ELK stack for real-time observability. Designed with cloud-native principles, the system demonstrates advanced patterns like service orchestration, event-driven messaging, and AI-enhanced content moderation — ideal for high-throughput, modular platforms across domains beyond traditional e-commerce.
 
 ## 📸 Project Visuals
 
@@ -25,15 +25,13 @@ View the all project related  visuals including UI , architecture diagrams, and 
   - Enhanced logging for authentication events
 
 - 🛍️ **Product Management**
-  - Real-time inventory tracking via Kafka
   - search and filtering
-  - Category management
   - Asynchronous updates for inventory changes
   - AI-powered product review analysis
 
 - 💳 **Order Processing**
   - Multi-step checkout
-  - Order history and tracking
+  - Order history
   - Asynchronous order status updates
 
 ## 🏗️ Architecture
@@ -48,7 +46,6 @@ View the all project related  visuals including UI , architecture diagrams, and 
 
 2. **Product Service** (`product-service/`)
    - Product catalog management
-   - Inventory tracking
    - Search and filtering
    - Kafka-based real-time updates
    - Review management with AI analysis
@@ -105,28 +102,65 @@ View the all project related  visuals including UI , architecture diagrams, and 
 - Apache Kafka
 - MySQL
 - ELK Stack (Elasticsearch, Logstash, Kibana)
+- IntelliJ IDEA (for backend development)
+- Visual Studio Code (for frontend development)
 
 ### Installation
 
-1. **Clone the Repository**
+1. **Install Required IDEs**
+   - Download and install [IntelliJ IDEA](https://www.jetbrains.com/idea/) for backend development
+   - Download and install [Visual Studio Code](https://code.visualstudio.com/) for frontend development
+   - Download and install [Docker Compose](https://docs.docker.com/compose/install/)
+
+2. **Clone and Setup Backend Services**
    ```bash
    git clone https://github.com/your-username/ecommerce-microservices-platform.git
    cd ecommerce-microservices-platform/Microservices
+   ```
+   - Open the project in IntelliJ IDEA
+   - Import all microservices as Maven projects
+   - Run all Spring Boot services simultaneously from the IDE
+
+3. **Setup AI Review Analysis Service**
+   ```bash
+   cd review-analysis-service
+   pip install -r requirements.txt
+   ```
+   Create a `.env` file:
+   ```
+   GOOGLE_API_KEY=your_google_api_key_here
+   ```
+   Run the service:
+   ```bash
+   python app.py
+   ```
+
+4. **Setup Kafka and Zookeeper**
+   ```bash
+   cd ecommerce-microservices-platform/Microservices
    docker-compose up -d
    ```
-   run all microservices in IDE
 
-2. **Start Infrastructure Services**
+5. **Setup ELK Stack**
    ```bash
    cd elk-docker-setup
    docker-compose up -d
    ```
+   Access Kibana at http://localhost:5601/app/home to view and configure logs
 
-4. **Start Frontend**
+6. **Setup Frontend**
    ```bash
    cd Frontend
+   npm install
    npm start
    ```
+   The application will be available at http://localhost:3000
+
+### Monitoring and Logging
+- Access Kibana dashboard at http://localhost:5601/app/home
+- Configure custom visualizations and graphs in Kibana
+- Monitor real-time logs and metrics
+- Set up alerts and notifications
 
 ## 🔄 Service Interaction Flows with Kafka
 
@@ -175,26 +209,6 @@ View the all project related  visuals including UI , architecture diagrams, and 
 - Performance metrics visualization
 - Error tracking and alerting
 
-## 🔧 Development
-
-### Review Analysis Service Setup
-
-1. **Install Dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-2. **Configure Environment**
-   Create a `.env` file:
-   ```
-   GOOGLE_API_KEY=your_google_api_key_here
-   ```
-
-3. **Run the Service**
-   ```bash
-   python app.py
-   ```
-
 ### Review Analysis Features
 
 - **Multiple Analysis Categories**:
@@ -216,6 +230,58 @@ View the all project related  visuals including UI , architecture diagrams, and 
       }
   }
   ```
+
+### Test Cases for AI Review Analysis
+
+Here are some example test cases demonstrating the AI service's ability to analyze reviews:
+
+1. **Valid Product Review**
+   ```json
+   {
+     "product_title": "Premium Almonds",
+     "product_description": "Organic, handpicked almonds rich in nutrients and flavor",
+     "review": "These almonds are really good"
+   }
+   ```
+   Response:
+   ```json
+   {
+     "is_relevant": true,
+     "message": "The review is related to the product as it expresses a general positive sentiment towards \"Premium Almonds\". However, it lacks detail and provides no specific information about the taste, quality, or benefits. It doesn't contain any inappropriate content."
+   }
+   ```
+
+2. **Spam Review**
+   ```json
+   {
+     "product_title": "Premium Almonds",
+     "product_description": "Organic, handpicked almonds rich in nutrients and flavor",
+     "review": "Get awesome mobile cover at 50% off – link inside!"
+   }
+   ```
+   Response:
+   ```json
+   {
+     "is_relevant": false,
+     "message": "The review is not relevant to the product Premium Almonds. It's promoting a mobile accessory with a suspicious link, indicating it is likely spam."
+   }
+   ```
+
+3. **Inappropriate Content**
+   ```json
+   {
+     "product_title": "Premium Almonds",
+     "product_description": "Organic, handpicked almonds rich in nutrients and flavor",
+     "review": "racial slur"
+   }
+   ```
+   Response:
+   ```json
+   {
+     "is_relevant": false,
+     "message": "The review is completely unrelated to the product Premium Almonds. It contains highly inappropriate and offensive language and does not provide any relevant feedback. Such content is not acceptable."
+   }
+   ```
 
 ### 📈 Performance Optimizations recommendations
 
